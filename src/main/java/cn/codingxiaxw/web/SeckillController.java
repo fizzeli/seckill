@@ -28,8 +28,7 @@ public class SeckillController
     private SeckillService seckillService;
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String list(Model model)
-    {
+    public String list(Model model){
         //list.jsp+mode=ModelAndView
         //获取列表页
         List<Seckill> list=seckillService.getSeckillList();
@@ -38,16 +37,13 @@ public class SeckillController
     }
 
     @RequestMapping(value = "/{seckillId}/detail",method = RequestMethod.GET)
-    public String detail(@PathVariable("seckillId") Long seckillId, Model model)
-    {
-        if (seckillId == null)
-        {
+    public String detail(@PathVariable("seckillId") Long seckillId, Model model){
+        if (seckillId == null){
             return "redirect:/seckill/list";
         }
 
         Seckill seckill=seckillService.getById(seckillId);
-        if (seckill==null)
-        {
+        if (seckill==null){
             return "forward:/seckill/list";
         }
 
@@ -113,8 +109,7 @@ public class SeckillController
     //获取系统时间
     @RequestMapping(value = "/time/now",method = RequestMethod.GET)
     @ResponseBody
-    public SeckillResult<Long> time()
-    {
+    public SeckillResult<Long> time(){
         Date now=new Date();
         return new SeckillResult<Long>(true,now.getTime());
     }
